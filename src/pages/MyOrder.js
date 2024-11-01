@@ -6,7 +6,7 @@ export default function MyOrder() {
 
     const fetchmyOrder = async () => {
         console.log(localStorage.getItem("userEmail"))
-        await fetch("http://localhost:5000/api/displayOrder", {
+        await fetch("https://foodify-backend-lime.vercel.app/api/displayOrder", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

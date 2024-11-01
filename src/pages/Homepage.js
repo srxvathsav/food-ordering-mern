@@ -7,17 +7,20 @@ import i2 from "../images/2.jpg";
 import i3 from "../images/3.jpg";
 
 export default function Homepage() {
-  const [search,setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const [foodCategory, setFoodCategory] = useState([]);
   const [foodItems, setFoodItems] = useState([]);
 
   const loadData = async () => {
-    let response = await fetch("http://localhost:5000/api/foodData", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    let response = await fetch(
+      "https://foodify-backend-lime.vercel.app/api/foodData",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     response = await response.json();
     // console.log(response[0], response[1]);
     setFoodItems(response[0]);
@@ -57,7 +60,9 @@ export default function Homepage() {
                       placeholder="Search"
                       aria-label="Search"
                       value={search}
-                      onChange={(e)=>{setSearch(e.target.value)}}
+                      onChange={(e) => {
+                        setSearch(e.target.value);
+                      }}
                     />
                     {/* <button className="btn btn-light" type="submit">
                       Search
@@ -79,7 +84,9 @@ export default function Homepage() {
                       placeholder="Search"
                       aria-label="Search"
                       value={search}
-                      onChange={(e)=>{setSearch(e.target.value)}}
+                      onChange={(e) => {
+                        setSearch(e.target.value);
+                      }}
                     />
                     {/* <button className="btn btn-light" type="submit">
                       Search
@@ -101,7 +108,9 @@ export default function Homepage() {
                       placeholder="Search"
                       aria-label="Search"
                       value={search}
-                      onChange={(e)=>{setSearch(e.target.value)}}
+                      onChange={(e) => {
+                        setSearch(e.target.value);
+                      }}
                     />
                     {/* <button className="btn btn-light" type="submit">
                       Search
@@ -151,14 +160,21 @@ export default function Homepage() {
                   {/* responsible for the line in between categories */}
                   {foodItems !== [] ? (
                     foodItems
-                      .filter((item) => (item.CategoryName === data.CategoryName) && (item.name.toLowerCase().includes(search.toLocaleLowerCase()))) 
+                      .filter(
+                        (item) =>
+                          item.CategoryName === data.CategoryName &&
+                          item.name
+                            .toLowerCase()
+                            .includes(search.toLocaleLowerCase())
+                      )
                       .map((filterItems) => {
                         return (
                           <div
                             key={filterItems._id}
                             className="col-12 col-lg-4 col-md-6"
                           >
-                            <Card foodItems={filterItems}
+                            <Card
+                              foodItems={filterItems}
                               // foodName={filterItems.name}
                               options={filterItems.options[0]}
                               // imgSrc={filterItems.img}
